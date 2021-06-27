@@ -4,7 +4,7 @@ import { View, Text, Button, TouchableOpacity, Image, StyleSheet, Platform } fro
 import FormButton from '../components/FormButton';
 import Forminput from '../components/Forminput';
 import SocialButton from '../components/SocialButton';
-import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider.android';
 
 const SignupScreen = ({ navigation }) => {
 
@@ -12,7 +12,7 @@ const SignupScreen = ({ navigation }) => {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
-    const { register } = useContext(AuthContext);
+    const { register, googleLogin, fbLogin } = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
@@ -59,19 +59,18 @@ const SignupScreen = ({ navigation }) => {
             {Platform.OS === 'android' ? (
                 <View>
                     <SocialButton
-                        buttonTitle="Sign Up with Facebook"
-                        btnType="facebook"
-                        color="#4867aa"
-                        backgroundColor="#e6eaf4"
-                        onPress={() => { }}
-                    />
-
-                    <SocialButton
                         buttonTitle="Sign Up with Google"
                         btnType="google"
                         color="#de4d41"
                         backgroundColor="#f5e7ea"
-                        onPress={() => { }}
+                        onPress={() => googleLogin()}
+                    />
+                    <SocialButton
+                        buttonTitle="Sign Up with Facebook"
+                        btnType="facebook"
+                        color="#4867aa"
+                        backgroundColor="#e6eaf4"
+                        onPress={() => fbLogin()}
                     />
                 </View>
             ) : null}

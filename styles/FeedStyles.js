@@ -4,15 +4,15 @@ export const Container = styled.View`
     flex: 1;
     align-items: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px;
 `
 
 export const Card = styled.View`
-    background-color: #f8f8f8;
     width: 100%;
     margin-bottom: 20px;
-    border-radius: 7px;
-    border: 0.1px solid #000;
+    border: .3px solid #000;
+    border-radius: 18px;
+    background-color: #f8f8f8;
     padding: 10px;
 `
 

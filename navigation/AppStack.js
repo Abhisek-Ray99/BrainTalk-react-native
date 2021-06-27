@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
@@ -20,26 +21,31 @@ const Tab = createBottomTabNavigator();
 const FeedStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="RN Social"
+      name="BrainTalk"
       component={HomeScreen}
       options={{
         headerTitleAlign: 'center',
         headerTitleStyle: {
-          color: '#2e64e5',
-          fontFamily: 'Kufam-SemiBoldItalic',
-          fontSize: 18,
+          color: '#FA5D78',
+          fontFamily: 'Artis-Regular',
+          fontSize: 30,
+          marginTop: 6
         },
         headerStyle: {
           shadowColor: '#fff',
           elevation: 0,
         },
         headerRight: () => (
-          <View style={{marginRight: 10}}>
-            <FontAwesome5.Button
-              name="plus"
-              size={22}
-              backgroundColor="#fff"
-              color="#2e64e5"
+          <View style={{marginRight: 16, marginTop: 6}}>
+            <Entypo.Button
+              name="feather"
+              size={20}
+              backgroundColor="#FA5D78"
+              color="#fff"
+              borderRadius={18}
+              paddingLeft= {16}
+              flex={1}
+              alignItems="center"
               onPress={() => navigation.navigate('AddPost')}
             />
           </View>
@@ -59,8 +65,8 @@ const FeedStack = ({navigation}) => (
         },
         headerBackTitleVisible: false,
         headerBackImage: () => (
-          <View style={{marginLeft: 15}}>
-            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+          <View style={{marginLeft: 0}}>
+            <Ionicons name="arrow-back" size={35} color="#2e64e5" />
           </View>
         ),
       }}
@@ -139,7 +145,7 @@ const AppStack = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#2e64e5',
+        activeTintColor: '#FA5D78',
       }}>
       <Tab.Screen
         name="Home"

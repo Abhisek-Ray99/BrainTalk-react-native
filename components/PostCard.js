@@ -6,7 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import { Card, UserInfo, UserImg, UserName, UserInfoText, PostTime, PostText, PostImg, InteractionWrapper, Interaction, InteractionText, Divider } from '../styles/FeedStyles';
 import ProgressiveImage from './ProgressiveImage';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Share } from 'react-native';
 
 const PostCard = ({ item, onDelete, onPress }) => {
 
@@ -49,6 +49,27 @@ const PostCard = ({ item, onDelete, onPress }) => {
         getUser();
     }, []);
 
+
+    const onShare = async () => {
+        try {
+            const result = await Share.share({
+                message:
+                    'React Native | A framework for building native apps using React',
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     return (
         <Card>
             <UserInfo>
@@ -75,12 +96,12 @@ const PostCard = ({ item, onDelete, onPress }) => {
                     <Icon name={likeIcon} size={25} color={likeIconColor} />
                     <InteractionText active={item.liked}>{likeText}</InteractionText>
                 </Interaction>
-                <Interaction active>
+                <Interaction>
                     <Icon name="md-chatbubble-outline" size={25} />
                     <InteractionText>{commentText}</InteractionText>
                 </Interaction>
                 <Interaction>
-                    <Icon name="share-outline" size={25} />
+                    <Icon name="share-outline" size={25} onPress={onShare} />
                 </Interaction>
                 {user.uid == item.userId ? (
                     <Interaction onPress={() => onDelete(item.id)}>
